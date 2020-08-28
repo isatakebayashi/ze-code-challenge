@@ -1,0 +1,25 @@
+version: '2'
+
+services:
+  db:
+    image: 'postgis/postgis'
+    volumes:
+      - 'postgis:/var/lib/postgis/data'
+    environment:
+      - POSTGRES_PASSWORD=postgres
+    ports:
+      - '5432:5432'
+
+  app:
+    depends_on:
+      - 'db'
+    build: .
+    environment:
+        - RAILS_ENV=development
+    ports:
+      - '3000:3000'
+    volumes:
+      - '.:/usr/src/app'
+
+volumes:
+  postgis:

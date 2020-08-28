@@ -1,0 +1,19 @@
+default: &default
+  adapter: postgis
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  host: db
+  user: postgres
+  password:  <%= ENV['POSTGRES_PASSWORD'] || 'postgres'%>
+
+development:
+  <<: *default
+  database: ze_code_challenge_development
+
+test:
+  <<: *default
+  database: ze_code_challenge_test
+
+production:
+  <<: *default
+  database: ze_code_challenge_production
