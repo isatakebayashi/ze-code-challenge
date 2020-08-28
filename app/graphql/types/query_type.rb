@@ -16,7 +16,9 @@ module Types
     end
 
     def find_partners(lat:, long:)
-      Partner.within(lat, long)
+      partner = Partner.nearest_partner(lat, long).first
+      id = partner['id']
+      Partner.find(id)
     end
   end
 end

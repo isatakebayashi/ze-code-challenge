@@ -3,6 +3,15 @@ require 'rgeo/geo_json'
 class Partner < ApplicationRecord
   validates :document, uniqueness: true
 
+  def self.nearest_partner(latitude, longitude)
+    ActiveRecord::Base.connection.execute <<-SQL
+      select *, ST_DISTANCE('POINT(#{latitude} #{longitude})', p.address) as nearest, ST_Within('POINT(#{latitude} #{longitude})', p.coverage_area)
+      from partners p
+      where ST_Within('POINT(#{latitude} #{longitude})', p.coverage_area)
+      order by nearest asc
+    SQL
+  end
+
   def coverage_area=(val)
     location = geo_factory(val)
     write_attribute(:coverage_area, location.as_text)

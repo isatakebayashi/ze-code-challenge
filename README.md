@@ -58,14 +58,38 @@ mutation{
 - Search a partner by id:
 ```
 query {
-  partner(id: "1") {
-    ownerName
+  partner(id: "7") {
+		ownerName
     tradingName
     document
+    coverageArea {
+      type
+      coordinates
+    }
+    address {
+      type
+      coordinates
+    }
   }
 }
 ```
 
-- Search the nearest partner by lat long:
+- Search the nearest partner by latitude and longitude:
 ```
+query {
+  findPartners(lat: -46.57421, long: -21.785741) {
+		id
+    ownerName
+    tradingName
+    document
+    coverageArea {
+      type
+      coordinates
+    }
+    address {
+      type
+      coordinates
+    }
+  }
+}
 ```
