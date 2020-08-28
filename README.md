@@ -2,8 +2,8 @@
 
 ## Dependencies
 
-* `docker > 18`
-* `docker-compose > 1.20`
+* `docker`
+* `docker-compose`
 
 #### Installation instructions
 
@@ -30,7 +30,7 @@ Polulate database: `docker-compose run app rake import:partners_data`
 
 ## Testing local by graphql
 
-- Create an partner:
+- Create a partner:
 ```
 mutation{
   createPartner(input: {
@@ -59,7 +59,7 @@ mutation{
 ```
 query {
   partner(id: "1") {
-		ownerName
+    ownerName
     tradingName
     document
   }
