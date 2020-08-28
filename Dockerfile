@@ -14,4 +14,4 @@ RUN bundle install
 
 EXPOSE 3000
 
-CMD rails s -b 0.0.0.0
+CMD rake db:setup && rails s -b 0.0.0.0

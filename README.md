@@ -12,7 +12,7 @@
 
 ## Setting up the project
 
-Make sure you have installed all dependencies and then run `docker-compose build`
+Make sure you have installed all dependencies and then run `docker-compose up`
 
 ## Running tests
 To run specs, use: `docker-compose run app rspec`
@@ -29,6 +29,10 @@ Run `docker-compose up`
 Polulate database: `docker-compose run app rake import:partners_data`
 
 ## Testing local by graphql
+
+By client, download: `https://www.electronjs.org/apps/graphiql`
+
+GraphQL endpoint: `http://0.0.0.0:3000/graphql`
 
 - Create a partner:
 ```
@@ -78,7 +82,7 @@ query {
 ```
 query {
   findPartners(lat: -46.57421, long: -21.785741) {
-		id
+    id
     ownerName
     tradingName
     document
